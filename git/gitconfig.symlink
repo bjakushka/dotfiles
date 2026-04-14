@@ -11,6 +11,16 @@
         gpgsign = true
 [tag]
         gpgSign = true
+[pull]
+        rebase = true
+[push]
+        default = simple
+[init]
+        defaultBranch = master
+[merge]
+        conflictstyle = diff3
+[pager]
+        branch = false
 # local/private config — must be last so overrides win
 [include]
         path = ~/.dotfiles/_local/gitconfig
