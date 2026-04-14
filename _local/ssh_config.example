@@ -1,0 +1,6 @@
+# Host example
+#   Hostname example.com
+#   User git
+#   IdentityFile ~/.ssh/id_rsa
+#   Port 22
+

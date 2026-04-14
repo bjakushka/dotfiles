@@ -1,0 +1,5 @@
+Include ~/.dotfiles/_local/ssh_config
+
+ServerAliveInterval 60
+IdentitiesOnly yes
+
