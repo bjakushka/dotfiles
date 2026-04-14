@@ -1,0 +1,6 @@
+DOTFILES="$HOME/.dotfiles"
+
+export PATH="$HOME/.local/bin:$PATH"
+
+[ -f "$DOTFILES/_local/zshrc" ] && source "$DOTFILES/_local/zshrc"
+

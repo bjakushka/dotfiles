@@ -1,0 +1,6 @@
+# local/private config goes in the include
+[include]
+        path = ~/.dotfiles/_local/gitconfig
+[core]
+        editor = vim
+
