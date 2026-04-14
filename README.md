@@ -64,6 +64,7 @@ You can also create additional local overrides, for example:
 
 These can be referenced from the main configs (e.g. sourced in `.zshrc` or included in `.gitconfig`).
 
-## notes
+## thanks
 
-Inside `zshrc`, the `DOTFILES` variable points to the local checkout path and is used to reference files inside this repository.
+I used [Zach Holman](https://github.com/holman)'s excellent
+[dotfiles](http://github.com/holman/dotfiles) as inspiration.
