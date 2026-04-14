@@ -1,7 +1,17 @@
-# local/private config goes in the include
-[include]
-        path = ~/.dotfiles/_local/gitconfig
 [core]
         editor = vim
         excludesfile = ~/.config/git/ignore
+        autocrlf = input
+[filter "lfs"]
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
+[commit]
+        gpgsign = true
+[tag]
+        gpgSign = true
+# local/private config — must be last so overrides win
+[include]
+        path = ~/.dotfiles/_local/gitconfig
 
