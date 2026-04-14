@@ -6,6 +6,7 @@ Personal configuration files for my machines.
 
 Files are grouped by topic:
 
+* `claude/`
 * `ghostty/`
 * `git/`
 * `ssh/`
@@ -19,6 +20,8 @@ The `_local/` directory contains machine-specific overrides and is not committed
 
 The following files are expected to be symlinked:
 
+* `claude/settings.json.symlink` → `~/.claude/settings.json`
+* `claude/statusline.sh.symlink` → `~/.claude/statusline.sh`
 * `ghostty/config.symlink` → `~/.config/ghostty/config`
 * `git/gitconfig.symlink` → `~/.gitconfig`
 * `git/ignore.symlink` → `~/.config/git/ignore`
@@ -36,6 +39,9 @@ git clone https://github.com/bjakushka/dotfiles.git ~/.dotfiles
 Create symlinks manually:
 
 ```sh
+ln -s ~/.dotfiles/claude/settings.json.symlink ~/.claude/settings.json
+ln -s ~/.dotfiles/claude/statusline.sh.symlink ~/.claude/statusline.sh
+
 mkdir -p ~/.config/ghostty
 ln -s ~/.dotfiles/ghostty/config.symlink ~/.config/ghostty/config
 

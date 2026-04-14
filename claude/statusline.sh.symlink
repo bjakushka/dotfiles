@@ -1,0 +1,71 @@
+#!/bin/bash
+# Claude Code statusline script. Receives JSON via stdin.
+# Uses python3 (bundled with macOS) instead of jq for JSON parsing.
+input=$(cat)
+
+get() {
+  echo "$input" | python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+keys = '$1'.split('.')
+val = data
+for k in keys:
+    if isinstance(val, dict) and k in val:
+        val = val[k]
+    else:
+        val = '$2'
+        break
+if val is None: val = '$2'
+print(int(float(val)) if isinstance(val, (int, float)) else val)
+" 2>/dev/null || echo "$2"
+}
+
+context=$(get context_window.used_percentage 0)
+dir=$(get workspace.current_dir .)
+dir=$(basename "$dir")
+
+hourly=$(get rate_limits.five_hour.used_percentage 0)
+weekly=$(get rate_limits.seven_day.used_percentage 0)
+resets_at=$(get rate_limits.five_hour.resets_at 0)
+model=$(get model.display_name "")
+duration_ms=$(get cost.total_duration_ms 0)
+
+# Format 5h reset timer
+remaining=""
+if [ "$resets_at" -gt 0 ] 2>/dev/null; then
+  now=$(date +%s)
+  left=$(( resets_at - now ))
+  [ "$left" -lt 0 ] && left=0
+  h=$(( left / 3600 ))
+  m=$(( (left % 3600) / 60 ))
+  if [ "$h" -gt 0 ]; then
+    remaining="${h}h${m}m"
+  else
+    remaining="${m}m"
+  fi
+fi
+
+# Format session duration
+duration=""
+if [ "$duration_ms" -gt 0 ] 2>/dev/null; then
+  total_s=$(( duration_ms / 1000 ))
+  dh=$(( total_s / 3600 ))
+  dm=$(( (total_s % 3600) / 60 ))
+  if [ "$dh" -gt 0 ]; then
+    duration="${dh}h${dm}m"
+  else
+    duration="${dm}m"
+  fi
+fi
+
+# Build 5h part
+five_h="5h:${hourly}%"
+[ -n "$remaining" ] && five_h="5h:${hourly}% (${remaining})"
+
+# Build suffix
+suffix=""
+[ -n "$model" ] && suffix="$model"
+[ -n "$duration" ] && suffix="${suffix:+$suffix }${duration}"
+
+echo "C:${context}% | ${five_h} | 7d:${weekly}% | $dir${suffix:+ | $suffix}"
+
