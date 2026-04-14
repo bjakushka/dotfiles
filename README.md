@@ -20,6 +20,7 @@ The following files are expected to be symlinked:
 
 * `zsh/zshrc.symlink` → `~/.zshrc`
 * `git/gitconfig.symlink` → `~/.gitconfig`
+* `git/ignore.symlink` → `~/.config/git/ignore`
 * `ghostty/config.symlink` → `~/.config/ghostty/config`
 
 ## installation
@@ -34,6 +35,9 @@ Create symlinks manually:
 
 ```sh
 ln -s ~/.dotfiles/zsh/zshrc.symlink ~/.zshrc
+
+mkdir -p ~/.config/git
+ln -s ~/.dotfiles/git/ignore.symlink ~/.config/git/ignore
 ln -s ~/.dotfiles/git/gitconfig.symlink ~/.gitconfig
 
 mkdir -p ~/.config/ghostty
