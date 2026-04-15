@@ -4,6 +4,8 @@ description: Session self-reflection. Use when the user asks to reflect on the s
 disable-model-invocation: true
 ---
 
+Before starting, read `~/.claude/CLAUDE.md` and project `CLAUDE.md` to avoid proposing duplicates.
+
 Produce a self-reflection on the current session in four sections. If a section has nothing substantive, write "no significant observations" rather than padding. Every claim must cite a specific moment from the session. Propose changes, do not apply them.
 
 ## 1. Assistant's mistakes
