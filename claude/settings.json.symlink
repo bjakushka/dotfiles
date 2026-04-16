@@ -7,7 +7,6 @@
       "Bash(which:*)"
     ]
   },
-  "model": "opus",
   "hooks": {
     "Notification": [
       {
