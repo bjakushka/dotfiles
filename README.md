@@ -21,11 +21,13 @@ The `_local/` directory contains machine-specific overrides and is not committed
 The following files are expected to be symlinked:
 
 * `claude/settings.json.symlink` → `~/.claude/settings.json`
+* `claude/skills.symlink` → `~/.claude/skills`
 * `claude/statusline.sh.symlink` → `~/.claude/statusline.sh`
 * `ghostty/config.symlink` → `~/.config/ghostty/config`
 * `git/gitconfig.symlink` → `~/.gitconfig`
 * `git/ignore.symlink` → `~/.config/git/ignore`
 * `ssh/config.symlink` → `~/.ssh/config`
+* `zsh/zprofile.symlink` → `~/.zprofile`
 * `zsh/zshrc.symlink` → `~/.zshrc`
 
 ## installation
@@ -40,6 +42,7 @@ Create symlinks manually:
 
 ```sh
 ln -s ~/.dotfiles/claude/settings.json.symlink ~/.claude/settings.json
+ln -s ~/.dotfiles/claude/skills.symlink ~/.claude/skills
 ln -s ~/.dotfiles/claude/statusline.sh.symlink ~/.claude/statusline.sh
 
 mkdir -p ~/.config/ghostty
@@ -51,6 +54,7 @@ ln -s ~/.dotfiles/git/ignore.symlink ~/.config/git/ignore
 
 ln -s ~/.dotfiles/ssh/config.symlink ~/.ssh/config
 
+ln -s ~/.dotfiles/zsh/zprofile.symlink ~/.zprofile
 ln -s ~/.dotfiles/zsh/zshrc.symlink ~/.zshrc
 ```
 
@@ -71,6 +75,7 @@ You can also create additional local overrides, for example:
 * `_local/ghostty`
 * `_local/gitconfig`
 * `_local/ssh_config`
+* `_local/zprofile`
 * `_local/zshrc`
 
 These can be referenced from the main configs (e.g. sourced in `.zshrc` or included in `.gitconfig`).
