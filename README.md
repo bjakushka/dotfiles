@@ -7,6 +7,7 @@ Personal configuration files for my machines.
 Files are grouped by topic:
 
 * `claude/`
+* `codex/`
 * `ghostty/`
 * `git/`
 * `ssh/`
@@ -21,6 +22,7 @@ The `_local/` directory contains machine-specific overrides and is not committed
 The following files are expected to be symlinked:
 
 * `claude/settings.json.symlink` → `~/.claude/settings.json`
+* `codex/config.toml.symlink` → `~/.codex/config.toml`
 * `claude/skills.symlink` → `~/.claude/skills`
 * `claude/statusline.sh.symlink` → `~/.claude/statusline.sh`
 * `ghostty/config.symlink` → `~/.config/ghostty/config`
@@ -42,6 +44,8 @@ Create symlinks manually:
 
 ```sh
 ln -s ~/.dotfiles/claude/settings.json.symlink ~/.claude/settings.json
+
+ln -s ~/.dotfiles/codex/config.toml.symlink ~/.codex/config.toml
 ln -s ~/.dotfiles/claude/skills.symlink ~/.claude/skills
 ln -s ~/.dotfiles/claude/statusline.sh.symlink ~/.claude/statusline.sh
 
@@ -57,6 +61,8 @@ ln -s ~/.dotfiles/ssh/config.symlink ~/.ssh/config
 ln -s ~/.dotfiles/zsh/zprofile.symlink ~/.zprofile
 ln -s ~/.dotfiles/zsh/zshrc.symlink ~/.zshrc
 ```
+
+> **Note:** `claude/settings.json.symlink` and `codex/config.toml.symlink` may be modified by their apps (e.g. when switching models). Review `git diff` before committing to avoid syncing ephemeral changes.
 
 ## overrides
 
