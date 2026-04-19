@@ -1,5 +1,7 @@
 model = "gpt-5.4"
 model_reasoning_effort = "high"
+personality = "pragmatic"
+approvals_reviewer = "user"
 project_doc_fallback_filenames = ["CLAUDE.md"]
 
 [tui]
