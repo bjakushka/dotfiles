@@ -5,7 +5,8 @@
       "Bash(ls:*)",
       "Bash(tail:*)",
       "Bash(which:*)"
-    ]
+    ],
+    "defaultMode": "default"
   },
   "hooks": {
     "Notification": [
@@ -46,7 +47,9 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
+  "language": "english",
   "alwaysThinkingEnabled": false,
   "effortLevel": "medium",
-  "advisorModel": "opus"
+  "advisorModel": "opus",
+  "autoUpdatesChannel": "stable"
 }
