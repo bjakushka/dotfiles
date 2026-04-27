@@ -4,6 +4,4 @@
         signingkey = SIGNINGKEY
 [gpg]
         program = /opt/homebrew/bin/gpg
-[core]
-        sshCommand = ssh -i ~/path/to/key -F /dev/null
 

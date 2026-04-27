@@ -3,4 +3,10 @@
 #   User git
 #   IdentityFile ~/.ssh/id_rsa
 #   Port 22
+#
+# Host github.com-repo-name
+#   Hostname github.com
+#   User git
+#   IdentityFile ~/.ssh/id_rsa_github.com-repo-name
+#   IdentitiesOnly yes
 
