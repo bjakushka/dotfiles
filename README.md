@@ -10,6 +10,7 @@ Files are grouped by topic:
 * `codex/`
 * `ghostty/`
 * `git/`
+* `gnupg/`
 * `ssh/`
 * `zsh/`
 
@@ -28,6 +29,8 @@ The following files are expected to be symlinked:
 * `ghostty/config.symlink` → `~/.config/ghostty/config`
 * `git/gitconfig.symlink` → `~/.gitconfig`
 * `git/ignore.symlink` → `~/.config/git/ignore`
+* `gnupg/gpg-agent.conf.symlink` → `~/.gnupg/gpg-agent.conf`
+* `gnupg/gpg.conf.symlink` → `~/.gnupg/gpg.conf`
 * `ssh/config.symlink` → `~/.ssh/config`
 * `zsh/zprofile.symlink` → `~/.zprofile`
 * `zsh/zshrc.symlink` → `~/.zshrc`
@@ -55,6 +58,10 @@ ln -s ~/.dotfiles/ghostty/config.symlink ~/.config/ghostty/config
 mkdir -p ~/.config/git
 ln -s ~/.dotfiles/git/gitconfig.symlink ~/.gitconfig
 ln -s ~/.dotfiles/git/ignore.symlink ~/.config/git/ignore
+
+mkdir -p ~/.gnupg
+ln -s ~/.dotfiles/gnupg/gpg-agent.conf.symlink ~/.gnupg/gpg-agent.conf
+ln -s ~/.dotfiles/gnupg/gpg.conf.symlink ~/.gnupg/gpg.conf
 
 ln -s ~/.dotfiles/ssh/config.symlink ~/.ssh/config
 

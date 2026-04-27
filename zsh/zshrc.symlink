@@ -1,5 +1,9 @@
 export PATH="$HOME/.local/bin:$PATH"
 export GPG_TTY=$(tty)
 
-[ -f "$DOTFILES/_local/zshrc" ] && source "$DOTFILES/_local/zshrc"
+# Keep gpg-agent attached to the current terminal session.
+if command -v gpg-connect-agent >/dev/null 2>&1; then
+  gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+fi
 
+[ -f "$DOTFILES/_local/zshrc" ] && source "$DOTFILES/_local/zshrc"
