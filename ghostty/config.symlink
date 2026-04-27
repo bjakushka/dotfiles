@@ -48,5 +48,8 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 keybind = shift+enter=text:\x1b\r
+#
 # quick terminal - cmd + shift + t
 keybind = cmd+shift+t=toggle_quick_terminal
+quick_terminal_height = 0.5
+quick_terminal_width = 1.0
