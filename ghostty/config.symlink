@@ -47,9 +47,16 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
+#
+# `shift+enter` inserts new line in terminal
 keybind = shift+enter=text:\x1b\r
 #
-# quick terminal - cmd + shift + t
+# quick terminal configurations
 keybind = cmd+shift+t=toggle_quick_terminal
-quick_terminal_height = 0.5
-quick_terminal_width = 1.0
+quick-terminal-position = top
+# size of quick terminal: height and width
+quick-terminal-size = 50%,100%
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.2
+quick-terminal-autohide = true
+quick-terminal-space-behavior = move
