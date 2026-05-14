@@ -49,7 +49,11 @@
   },
   "language": "english",
   "alwaysThinkingEnabled": false,
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "advisorModel": "opus",
-  "autoUpdatesChannel": "stable"
+  "autoUpdatesChannel": "stable",
+  "preferredNotifChannel": "terminal_bell",
+  "autoCompactEnabled": false,
+  "remoteControlAtStartup": false,
+  "agentPushNotifEnabled": true
 }
