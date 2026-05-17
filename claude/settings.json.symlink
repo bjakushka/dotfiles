@@ -52,6 +52,8 @@
   "effortLevel": "high",
   "advisorModel": "opus",
   "autoUpdatesChannel": "stable",
+  "tui": "fullscreen",
+  "theme": "dark",
   "preferredNotifChannel": "terminal_bell",
   "autoCompactEnabled": false,
   "remoteControlAtStartup": false,
