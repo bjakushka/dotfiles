@@ -25,6 +25,8 @@ The following files are expected to be symlinked:
 * `claude/settings.json.symlink` → `~/.claude/settings.json`
 * `codex/config.toml.symlink` → `~/.codex/config.toml`
 * `claude/skills.symlink` → `~/.claude/skills`
+* `claude/skills.symlink/start-work` → `~/.codex/skills/start-work`
+* `claude/skills.symlink/plan-task` → `~/.codex/skills/plan-task`
 * `claude/statusline.sh.symlink` → `~/.claude/statusline.sh`
 * `ghostty/config.symlink` → `~/.config/ghostty/config`
 * `git/gitconfig.symlink` → `~/.gitconfig`
@@ -47,10 +49,12 @@ Create symlinks manually:
 
 ```sh
 ln -s ~/.dotfiles/claude/settings.json.symlink ~/.claude/settings.json
-
-ln -s ~/.dotfiles/codex/config.toml.symlink ~/.codex/config.toml
 ln -s ~/.dotfiles/claude/skills.symlink ~/.claude/skills
 ln -s ~/.dotfiles/claude/statusline.sh.symlink ~/.claude/statusline.sh
+
+ln -s ~/.dotfiles/codex/config.toml.symlink ~/.codex/config.toml
+ln -s ~/.dotfiles/claude/skills.symlink/plan-task ~/.codex/skills/plan-task
+ln -s ~/.dotfiles/claude/skills.symlink/start-work ~/.codex/skills/start-work
 
 mkdir -p ~/.config/ghostty
 ln -s ~/.dotfiles/ghostty/config.symlink ~/.config/ghostty/config
