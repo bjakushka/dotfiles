@@ -8,5 +8,7 @@ project_doc_fallback_filenames = ["CLAUDE.md"]
 status_line = ["model-with-reasoning", "current-dir", "context-used", "five-hour-limit", "weekly-limit"]
 
 [tui.keymap.editor]
-insert_newline = ["shift-enter", "alt-enter"]
+insert_newline = "alt-enter"
 
+[tui.keymap.composer]
+queue = "ctrl-shift-enter"
