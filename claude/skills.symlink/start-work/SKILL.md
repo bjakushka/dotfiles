@@ -15,7 +15,8 @@ Do not auto-apply this skill from a general request that merely sounds similar.
 
 ## Input
 
-Expect a ticket id such as `CAI-8827`.
+Expect a ticket id such as `PRJ-1234`, or a combined multi-ticket id such as `prj-1234-5678`
+(see global CLAUDE.md "Multi-ticket work").
 
 If the user does not provide a ticket id explicitly:
 - list available ticket directories from `.claude/tasks/` when that directory exists;
@@ -31,9 +32,9 @@ If the user does not provide a ticket id explicitly:
 Do not construct `.claude/tasks/<ticket-id>/` literally — list `.claude/tasks/`
 and match the directory:
 
-- case-insensitively (dirs may be lowercase, e.g. `abt-2131`);
-- allowing a combined multi-ticket directory (e.g. `abt-2131-2132-2133/` covers
-  `ABT-2131`).
+- case-insensitively (dirs may be lowercase, e.g. `prj-1234`);
+- allowing a combined multi-ticket directory (e.g. `prj-1234-5678-9012/` covers
+  `PRJ-1234`).
 
 Use the matched directory as `<task-dir>` below. If no directory matches, follow
 "Missing Task Directory".
