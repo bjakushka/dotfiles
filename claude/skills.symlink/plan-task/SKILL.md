@@ -10,7 +10,7 @@ Your job is to **analyze, not implement** — understand the task, explore the
 codebase, and produce a plan. Do NOT write application code in this skill.
 
 ## Input
-- Ticket ID (e.g. ETC-1785) — passed as `$ARGUMENTS` or in the conversation
+- Ticket ID (e.g. PRJ-1234) — passed as `$ARGUMENTS` or in the conversation
 - Task description — inline, or ask the user to paste it before proceeding
 
 If only the ticket ID is given without a description, ask for the description first.
@@ -39,7 +39,8 @@ Present scope and open questions to the user for discussion.
 
 ## Step 5: Create the task files
 After the user confirms the analysis, create the task directory `.claude/tasks/<ticket-id>/`
-(lowercase) with three files:
+(lowercase; for inseparable multi-ticket work use a combined id like `prj-1234-5678` - see global
+CLAUDE.md "Multi-ticket work") with three files:
 
 - **`desc.md`** — the task description. Paste the original ticket text verbatim; strip only
   issue-tracker-specific markup (convert it to plain markdown). Add interpretation/design
