@@ -6,9 +6,17 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
 
 ## Asking the user
 
-- When you present the user more than one choice at once (e.g. AskUserQuestion
-  tool), add a final open-ended prompt inviting free-text input: a comment or
-  anything to add on top of the selections. A single choice doesn't need it.
+- When you present choices (AskUserQuestion tool), I must always be able to
+  answer in free text instead of picking a predefined option. The harness adds
+  a "Type something" free-text entry and a "Chat about this" entry to every
+  question automatically — do not add your own free-form option, it is already
+  there.
+- NEVER use the `preview` field on options (the bordered side-by-side form) —
+  it is banned.
+- When you ask more than one question at once, add a final extra question
+  titled "Extra" (or similar), with exactly two options and no descriptions:
+  "Nothing to add" and "—" (a filler, since the tool requires at least two
+  options). I write anything extra via the automatic "Type something".
 
 ## Local instructions
 
