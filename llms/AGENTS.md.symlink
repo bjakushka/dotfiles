@@ -1,0 +1,17 @@
+<!--
+Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
+-->
+
+# Instructions
+
+## Asking the user
+
+- When you present the user more than one choice at once (e.g. AskUserQuestion
+  tool), add a final open-ended prompt inviting free-text input: a comment or
+  anything to add on top of the selections. A single choice doesn't need it.
+
+## Local instructions
+
+For additional local instructions, see
+@~/.dotfiles/_local/AGENTS.local.md 
+

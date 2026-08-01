@@ -11,6 +11,7 @@ Files are grouped by topic:
 * `ghostty/`
 * `git/`
 * `gnupg/`
+* `llms/`
 * `ssh/`
 * `zsh/`
 
@@ -28,6 +29,8 @@ The following files are expected to be symlinked:
 * `claude/skills.symlink/start-work` → `~/.codex/skills/start-work`
 * `claude/skills.symlink/plan-task` → `~/.codex/skills/plan-task`
 * `claude/statusline.sh.symlink` → `~/.claude/statusline.sh`
+* `llms/AGENTS.md.symlink` → `~/.claude/CLAUDE.md`
+* `llms/AGENTS.md.symlink` → `~/.codex/AGENTS.md`
 * `ghostty/config.symlink` → `~/.config/ghostty/config`
 * `git/gitconfig.symlink` → `~/.gitconfig`
 * `git/ignore.symlink` → `~/.config/git/ignore`
@@ -55,6 +58,9 @@ ln -s ~/.dotfiles/claude/statusline.sh.symlink ~/.claude/statusline.sh
 ln -s ~/.dotfiles/codex/config.toml.symlink ~/.codex/config.toml
 ln -s ~/.dotfiles/claude/skills.symlink/plan-task ~/.codex/skills/plan-task
 ln -s ~/.dotfiles/claude/skills.symlink/start-work ~/.codex/skills/start-work
+
+ln -s ~/.dotfiles/llms/AGENTS.md.symlink ~/.claude/CLAUDE.md
+ln -s ~/.dotfiles/llms/AGENTS.md.symlink ~/.codex/AGENTS.md
 
 mkdir -p ~/.config/ghostty
 ln -s ~/.dotfiles/ghostty/config.symlink ~/.config/ghostty/config
@@ -89,6 +95,7 @@ cp ~/.dotfiles/_local/gitconfig.example ~/.dotfiles/_local/gitconfig
 
 You can also create additional local overrides, for example:
 
+* `_local/AGENTS.local.md`
 * `_local/ghostty`
 * `_local/gitconfig`
 * `_local/ssh_config`
