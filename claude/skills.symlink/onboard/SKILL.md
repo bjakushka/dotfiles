@@ -22,7 +22,8 @@ after explicit approval. Delete/move asked separately.
    facts, e.g. PROJECT.md).
 2. Read the instruction, plan, and task markdown under `.claude/` — the extra
    guidance that is not auto-imported. Skip `settings*.json`, `skills/`, `agents/`
-   (not session context). If `.claude/` is absent, say so and move on.
+   (not session context). `.claude/` is optional, if it is absent, skip it
+   silently.
 3. Look over the project structure (top-level layout, entry points) to see how it
    is organized and how work with it flows.
 4. Note any obvious inconsistency (a referenced file that is missing, stale
