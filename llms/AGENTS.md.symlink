@@ -18,6 +18,24 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
   "Nothing to add" and "—" (a filler, since the tool requires at least two
   options). I write anything extra via the automatic "Type something".
 
+## Reviewing diffs
+
+- When working from the CLI and the `revdiff` skill is available, show me diffs
+  and proposed edits in revdiff (TUI overlay) by default — do NOT print the diff
+  as text in chat. This applies everywhere, not just one project.
+- A proposed edit goes to revdiff FIRST — never print a proposed diff as text,
+  even before I approve it. Text in chat is only for asking confirmation.
+- Launch revdiff yourself (the launcher opens an overlay in my terminal); I
+  annotate whole-file or per-line, and the annotations come back to you as
+  `file:line (type)` text.
+- To show a proposed edit WITHOUT changing the real file: write the edited
+  version to one temp copy and compare — `--compare-old=<real file>
+  --compare-new=<temp copy>`. Apply the edit for real only after I approve.
+- Pass chat context (what to look at, your questions) via `--description` so I
+  can read it inside the overlay.
+- Once a change was shown in revdiff, do NOT reprint the diff as text — just ask
+  for confirmation if you need it.
+
 ## Local instructions
 
 For additional local instructions, see

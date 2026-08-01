@@ -1,6 +1,7 @@
 {
   "permissions": {
     "allow": [
+      "Bash(cp:*)",
       "Bash(grep:*)",
       "Bash(ls:*)",
       "Bash(tail:*)",
@@ -8,8 +9,24 @@
     ],
     "defaultMode": "default"
   },
+  "sandbox": {
+    "excludedCommands": [
+      "*/launch-revdiff.sh*"
+    ]
+  },
   "model": "opus",
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\", \"additionalContext\": \"Use the revdiff skill to show diffs and proposed edits to the user, not plaintext in chat.\"}}'"
+          }
+        ]
+      }
+    ],
     "Notification": [
       {
         "matcher": "",
