@@ -25,6 +25,7 @@ The following files are expected to be symlinked:
 
 * `claude/settings.json.symlink` → `~/.claude/settings.json`
 * `codex/config.toml.symlink` → `~/.codex/config.toml`
+* `codex/hooks.json.symlink` → `~/.codex/hooks.json`
 * `claude/skills.symlink` → `~/.claude/skills`
 * `claude/skills.symlink/start-work` → `~/.codex/skills/start-work`
 * `claude/skills.symlink/plan-task` → `~/.codex/skills/plan-task`
@@ -56,6 +57,7 @@ ln -s ~/.dotfiles/claude/skills.symlink ~/.claude/skills
 ln -s ~/.dotfiles/claude/statusline.sh.symlink ~/.claude/statusline.sh
 
 ln -s ~/.dotfiles/codex/config.toml.symlink ~/.codex/config.toml
+ln -s ~/.dotfiles/codex/hooks.json.symlink ~/.codex/hooks.json
 ln -s ~/.dotfiles/claude/skills.symlink/plan-task ~/.codex/skills/plan-task
 ln -s ~/.dotfiles/claude/skills.symlink/start-work ~/.codex/skills/start-work
 
@@ -79,7 +81,7 @@ ln -s ~/.dotfiles/zsh/zprofile.symlink ~/.zprofile
 ln -s ~/.dotfiles/zsh/zshrc.symlink ~/.zshrc
 ```
 
-> **Note:** `claude/settings.json.symlink` and `codex/config.toml.symlink` may be modified by their apps (e.g. when switching models). Review `git diff` before committing to avoid syncing ephemeral changes.
+> **Note:** Codex uses `codex/config.toml.symlink` for shared configuration. Machine-local state such as project trust and hook trust hashes belongs in `_local/local.config.toml`, which is loaded by running `codex --profile local`.
 
 ## overrides
 
@@ -98,11 +100,23 @@ You can also create additional local overrides, for example:
 * `_local/AGENTS.local.md`
 * `_local/ghostty`
 * `_local/gitconfig`
+* `_local/local.config.toml`
 * `_local/ssh_config`
 * `_local/zprofile`
 * `_local/zshrc`
 
 These can be referenced from the main configs (e.g. sourced in `.zshrc` or included in `.gitconfig`).
+
+## codex local state
+
+To set up Codex local state:
+
+```sh
+cp ~/.dotfiles/_local/local.config.toml.example ~/.dotfiles/_local/local.config.toml
+ln -s ~/.dotfiles/_local/local.config.toml ~/.codex/local.config.toml
+```
+
+The shared shell config aliases `codex` to `codex --profile local`, so Codex loads both `~/.codex/config.toml` and `~/.codex/local.config.toml`.
 
 ## thanks
 

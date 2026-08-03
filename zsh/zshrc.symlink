@@ -1,6 +1,8 @@
 export PATH="$HOME/.local/bin:$PATH"
 export GPG_TTY=$(tty)
 
+alias codex='command codex --profile local'
+
 # Keep gpg-agent attached to the current terminal session.
 if command -v gpg-connect-agent >/dev/null 2>&1; then
   gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
