@@ -38,6 +38,5 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
 
 ## Local instructions
 
-For additional local instructions, see
-@~/.dotfiles/_local/AGENTS.local.md 
-
+For additional local instructions, see following files
+- @~/.dotfiles/_local/AGENTS.local.md
