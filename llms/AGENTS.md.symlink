@@ -28,9 +28,10 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
 - Launch revdiff yourself (the launcher opens an overlay in my terminal); I
   annotate whole-file or per-line, and the annotations come back to you as
   `file:line (type)` text.
-- To show a proposed edit WITHOUT changing the real file: write the edited
-  version to one temp copy and compare — `--compare-old=<real file>
-  --compare-new=<temp copy>`. Apply the edit for real only after I approve.
+- To show proposed edits WITHOUT touching real files: one file — `--compare-old=<real>
+  --compare-new=<temp copy>`; several files — make them in a temp git worktree and launch
+  revdiff from there (with `--untracked`, else new files are invisible). Apply only after
+  I approve. Don't pipe a patch into the launcher — `--stdin` never reaches it.
 - Pass chat context (what to look at, your questions) via `--description` so I
   can read it inside the overlay.
 - Once a change was shown in revdiff, do NOT reprint the diff as text — just ask
