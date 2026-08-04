@@ -9,11 +9,6 @@
     ],
     "defaultMode": "default"
   },
-  "sandbox": {
-    "excludedCommands": [
-      "*/launch-revdiff.sh*"
-    ]
-  },
   "model": "opus",
   "hooks": {
     "PreToolUse": [
@@ -66,6 +61,11 @@
     "command": "~/.claude/statusline.sh"
   },
   "language": "english",
+  "sandbox": {
+    "excludedCommands": [
+      "*/launch-revdiff.sh*"
+    ]
+  },
   "alwaysThinkingEnabled": false,
   "effortLevel": "high",
   "advisorModel": "opus",
