@@ -29,8 +29,7 @@ The following files are expected to be symlinked:
 * `codex/config.toml.symlink` → `~/.codex/config.toml`
 * `codex/hooks.json.symlink` → `~/.codex/hooks.json`
 * `claude/skills.symlink` → `~/.claude/skills`
-* `claude/skills.symlink/start-work` → `~/.codex/skills/start-work`
-* `claude/skills.symlink/plan-task` → `~/.codex/skills/plan-task`
+* `claude/skills.symlink/<skill>` → `~/.codex/skills/<skill>` (optional, one link per skill)
 * `claude/statusline.sh.symlink` → `~/.claude/statusline.sh`
 * `llms/AGENTS.md.symlink` → `~/.claude/CLAUDE.md`
 * `llms/AGENTS.md.symlink` → `~/.codex/AGENTS.md`
@@ -55,14 +54,17 @@ git clone https://github.com/bjakushka/dotfiles.git ~/.dotfiles
 Create symlinks manually:
 
 ```sh
+mkdir -p ~/.claude
 ln -s ~/.dotfiles/claude/settings.json.symlink ~/.claude/settings.json
 ln -s ~/.dotfiles/claude/skills.symlink ~/.claude/skills
 ln -s ~/.dotfiles/claude/statusline.sh.symlink ~/.claude/statusline.sh
 
+mkdir -p ~/.codex/skills
 ln -s ~/.dotfiles/codex/config.toml.symlink ~/.codex/config.toml
 ln -s ~/.dotfiles/codex/hooks.json.symlink ~/.codex/hooks.json
-ln -s ~/.dotfiles/claude/skills.symlink/plan-task ~/.codex/skills/plan-task
-ln -s ~/.dotfiles/claude/skills.symlink/start-work ~/.codex/skills/start-work
+
+# Link whichever skills you want available in Codex, one by one:
+ln -s ~/.dotfiles/claude/skills.symlink/<skill> ~/.codex/skills/<skill>
 
 ln -s ~/.dotfiles/llms/AGENTS.md.symlink ~/.claude/CLAUDE.md
 ln -s ~/.dotfiles/llms/AGENTS.md.symlink ~/.codex/AGENTS.md
@@ -78,6 +80,7 @@ mkdir -p ~/.gnupg
 ln -s ~/.dotfiles/gnupg/gpg-agent.conf.symlink ~/.gnupg/gpg-agent.conf
 ln -s ~/.dotfiles/gnupg/gpg.conf.symlink ~/.gnupg/gpg.conf
 
+mkdir -p -m 700 ~/.ssh
 ln -s ~/.dotfiles/ssh/config.symlink ~/.ssh/config
 
 mkdir -p ~/.config/zed
