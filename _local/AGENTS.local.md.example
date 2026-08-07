@@ -2,4 +2,15 @@
 Shared local LLM instructions
 -->
 
+# Global instructions
 
+## Communication style
+- Language of communication - English unless the project specifies otherwise. Use it
+  for all replies, explanations, reasoning, and discussion with me. Technical terms and
+  code identifiers stay in their original form.
+- Language of artifacts - English, always. Everything you produce as a work product is
+  English regardless of the conversation language: code and code comments, commit messages,
+  branch names, documentation, task files, and any file written to the repository.
+- Maintain full orthographic correctness for each language, including all required
+  diacritical marks, accents, and special characters. Never substitute accented characters
+  with their ASCII equivalents.
