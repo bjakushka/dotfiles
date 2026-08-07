@@ -60,7 +60,6 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
-  "language": "english",
   "sandbox": {
     "excludedCommands": [
       "*/launch-revdiff.sh*"
