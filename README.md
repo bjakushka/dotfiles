@@ -18,7 +18,8 @@ Files are grouped by topic:
 
 Files ending with `.symlink` are intended to be symlinked manually to their target locations.
 
-The `_local/` directory contains machine-specific overrides and is not committed to the repository.
+The `_local/` directory contains machine-specific overrides. Only its `*.example` templates
+are committed — see [overrides](#overrides).
 
 ## files
 
@@ -86,42 +87,38 @@ ln -s ~/.dotfiles/zsh/zprofile.symlink ~/.zprofile
 ln -s ~/.dotfiles/zsh/zshrc.symlink ~/.zshrc
 ```
 
-> **Note:** Codex uses `codex/config.toml.symlink` for shared configuration. Machine-local state such as project trust and hook trust hashes belongs in `_local/local.config.toml`, which is loaded by running `codex --profile local`.
-
 ## overrides
 
-Local machine-specific configuration lives in `_local/`.
-
-These files are ignored by Git and should be created manually per machine.
-
-To set up Git overrides:
+Each file is created manually per machine. Start from a template whenever one exists
+(`gitconfig` as example):
 
 ```sh
 cp ~/.dotfiles/_local/gitconfig.example ~/.dotfiles/_local/gitconfig
 ```
 
-You can also create additional local overrides, for example:
+### Loaded automatically
 
-* `_local/AGENTS.local.md`
-* `_local/ghostty`
-* `_local/gitconfig`
-* `_local/local.config.toml`
-* `_local/ssh_config`
-* `_local/zprofile`
-* `_local/zshrc`
+The main configs already reference these paths, so creating the file is enough:
 
-These can be referenced from the main configs (e.g. sourced in `.zshrc` or included in `.gitconfig`).
+* `_local/AGENTS.local.md` — imported by `llms/AGENTS.md.symlink`; Codex reads it through the `SessionStart` hook
+* `_local/gitconfig` — `[include]` in `git/gitconfig.symlink`, placed last so overrides win
+* `_local/ssh_config` — `Include` in `ssh/config.symlink`
+* `_local/zprofile` — sourced from `zsh/zprofile.symlink`
+* `_local/zshrc` — sourced from `zsh/zshrc.symlink`
 
-## codex local state
+### Linked manually
 
-To set up Codex local state:
+`_local/local.config.toml` holds machine-local Codex state — project trust and hook trust
+hashes — which must stay out of the repository. It needs its own symlink:
 
 ```sh
 cp ~/.dotfiles/_local/local.config.toml.example ~/.dotfiles/_local/local.config.toml
 ln -s ~/.dotfiles/_local/local.config.toml ~/.codex/local.config.toml
 ```
 
-The shared shell config aliases `codex` to `codex --profile local`, so Codex loads both `~/.codex/config.toml` and `~/.codex/local.config.toml`.
+Shared Codex configuration stays in `codex/config.toml.symlink`. The shared shell config
+aliases `codex` to `codex --profile local`, so Codex loads both `~/.codex/config.toml` and
+`~/.codex/local.config.toml`.
 
 ## thanks
 
