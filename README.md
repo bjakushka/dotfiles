@@ -13,6 +13,7 @@ Files are grouped by topic:
 * `gnupg/`
 * `llms/`
 * `ssh/`
+* `zed/`
 * `zsh/`
 
 Files ending with `.symlink` are intended to be symlinked manually to their target locations.
@@ -38,6 +39,7 @@ The following files are expected to be symlinked:
 * `gnupg/gpg-agent.conf.symlink` → `~/.gnupg/gpg-agent.conf`
 * `gnupg/gpg.conf.symlink` → `~/.gnupg/gpg.conf`
 * `ssh/config.symlink` → `~/.ssh/config`
+* `zed/settings.json.symlink` → `~/.config/zed/settings.json`
 * `zsh/zprofile.symlink` → `~/.zprofile`
 * `zsh/zshrc.symlink` → `~/.zshrc`
 
@@ -76,6 +78,9 @@ ln -s ~/.dotfiles/gnupg/gpg-agent.conf.symlink ~/.gnupg/gpg-agent.conf
 ln -s ~/.dotfiles/gnupg/gpg.conf.symlink ~/.gnupg/gpg.conf
 
 ln -s ~/.dotfiles/ssh/config.symlink ~/.ssh/config
+
+mkdir -p ~/.config/zed
+ln -s ~/.dotfiles/zed/settings.json.symlink ~/.config/zed/settings.json
 
 ln -s ~/.dotfiles/zsh/zprofile.symlink ~/.zprofile
 ln -s ~/.dotfiles/zsh/zshrc.symlink ~/.zshrc
