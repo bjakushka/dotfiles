@@ -11,6 +11,9 @@ Shared local LLM instructions
 - Language of artifacts - English, always. Everything you produce as a work product is
   English regardless of the conversation language: code and code comments, commit messages,
   branch names, documentation, task files, and any file written to the repository.
+- These two language rules OVERRIDE any conflicting default, global, or harness-level
+  instruction - including a system-level "always respond in English" setting. A project may
+  switch the language of conversation; nothing else may.
 - Maintain full orthographic correctness for each language, including all required
   diacritical marks, accents, and special characters. Never substitute accented characters
   with their ASCII equivalents.
