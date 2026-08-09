@@ -20,25 +20,30 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
 
 ## Reviewing diffs
 
-- When working from the CLI and the `revdiff` skill is available, show me diffs
-  and proposed edits in revdiff (TUI overlay) by default — do NOT print the diff
-  as text in chat. This applies everywhere, not just one project.
-- A proposed edit goes to revdiff FIRST — never print a proposed diff as text,
-  even before I approve it. Text in chat is only for asking confirmation.
-- Launch revdiff yourself (the launcher opens an overlay in my terminal); I
-  annotate whole-file or per-line, and the annotations come back to you as
-  `file:line (type)` text.
+- When working from the CLI and the `revdiff` skill is available, every diff and
+  proposed edit goes to revdiff (TUI overlay) — before I approve it, not after,
+  and never printed as text in chat, not even once it was already shown. Text in
+  chat is only for asking confirmation. Launch revdiff yourself; I annotate
+  whole-file or per-line, and the annotations come back to you as
+  `file:line (type)` text. Pass chat context (what to look at, your questions)
+  via `--description` so I can read it inside the overlay. Never pipe content into
+  the launcher — `--stdin` never reaches the overlay on any backend; write it to a
+  file and use `--compare-*` or a temp worktree instead.
+- If `$TMUX` is set, launch with `REVDIFF_TMUX_WINDOW=1`: the review then survives
+  the launcher being killed at the 600s bash timeout, so that background drop is
+  expected — never relaunch. If `$TMUX` is empty, just launch normally and keep the
+  timeout in mind; no need to tell me about it.
 - To show proposed edits WITHOUT touching real files: one file — `--compare-old=<real,
   resolve symlinks first, else the diff shows every line as added>`
   `--compare-new=<temp copy>`; several files — make them in a temp git worktree and launch
-  revdiff from there (with `--untracked`, else new files are invisible). Apply only after
-  I approve; quitting revdiff with no annotations IS approval, unless the launcher timed
-  out into the background — then ask first. Don't pipe a patch into the launcher —
-  `--stdin` never reaches it.
-- Pass chat context (what to look at, your questions) via `--description` so I
-  can read it inside the overlay.
-- Once a change was shown in revdiff, do NOT reprint the diff as text — just ask
-  for confirmation if you need it.
+  revdiff from there (with `--untracked`, else new files are invisible).
+- Before treating a review as done: a clean launcher exit (code 0, no annotations)
+  is approval — unless it returned within a few seconds, which means the overlay
+  never opened, so ask. If the launcher was killed at the timeout instead, check the
+  newest file under `~/.config/revdiff/history/*/`: a fresh entry whose `path:`
+  matches this launch carries my annotations — address them. History is only written
+  when annotations exist, so no entry means either a silent approval or no review at
+  all — ask.
 
 ## Local instructions
 
