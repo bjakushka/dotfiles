@@ -26,6 +26,17 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "apply_patch|Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '%s\\n' '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"additionalContext\":\"Use revdiff for proposed edits before approval. Approval in revdiff is approval to apply that exact change; do not ask again unless the change, scope, or risk changed.\"}}'"
+          }
+        ]
+      }
     ]
   }
 }

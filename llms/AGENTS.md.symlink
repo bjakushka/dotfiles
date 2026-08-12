@@ -29,6 +29,7 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
 
 - When working from the CLI and the `revdiff` skill is available, every diff and
   proposed edit goes to revdiff (TUI overlay) — before I approve it, not after,
+  and approval in revdiff is approval to apply that exact change,
   and never printed as text in chat, not even once it was already shown. Text in
   chat is only for asking confirmation. Launch revdiff yourself; I annotate
   whole-file or per-line, and the annotations come back to you as
