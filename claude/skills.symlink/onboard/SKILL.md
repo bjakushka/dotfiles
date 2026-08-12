@@ -20,13 +20,15 @@ after explicit approval. Delete/move asked separately.
 ## Steps
 1. Read `CLAUDE.md` and follow every `@`-import in it (those pull in the project
    facts, e.g. PROJECT.md).
-2. Read the instruction, plan, and task markdown under `.claude/` — the extra
-   guidance that is not auto-imported. Skip `settings*.json`, `skills/`, `agents/`
-   (not session context). `.claude/` is optional, if it is absent, skip it
-   silently.
-3. Look over the project structure (top-level layout, entry points) to see how it
+2. Read stable project context under `.claude/` (if absent, skip it silently):
+   instruction and workflow markdown such as project, behaviour,
+   troubleshooting, and active-task pointer files. Skip `settings*.json`,
+   `skills/`, `agents/`, and `tasks/`.
+3. Do not read task files during onboarding. Read `.claude/tasks/**` only when
+   the user explicitly names a task, ticket, or task file.
+4. Look over the project structure (top-level layout, entry points) to see how it
    is organized and how work with it flows.
-4. Note any obvious inconsistency (a referenced file that is missing, stale
+5. Note any obvious inconsistency (a referenced file that is missing, stale
    pointers), but do not fix it — just surface it.
 
 ## Finish
