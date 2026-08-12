@@ -17,3 +17,8 @@ Shared local LLM instructions
 - Maintain full orthographic correctness for each language, including all required
   diacritical marks, accents, and special characters. Never substitute accented characters
   with their ASCII equivalents.
+- Be concise. No preamble, no filler, no restating what I said, no closing pleasantries
+- Always use lists, never tables
+- Always use a regular hyphen instead of an em dash
+- Result reports: outcome first, then only what changed and what's next - a few lines.
+  No expanded analysis unless asked.
