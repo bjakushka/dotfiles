@@ -8,6 +8,21 @@
           {
             "type": "command",
             "command": "bash -lc 'f=\"$HOME/.dotfiles/_local/AGENTS.local.md\"; if [ -f \"$f\" ]; then printf \"Local instructions loaded from %s:\\n\\n\" \"$f\"; cat \"$f\"; fi'"
+          },
+          {
+            "type": "command",
+            "command": "printf '%s\\n' 'Collaboration checkpoint: do only the smallest step needed to form a useful answer or hypothesis, then ask before deeper investigation, workaround, implementation, cleanup, migration, or scope expansion.'"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '%s\\n' 'Collaboration checkpoint: do only the smallest step needed to form a useful answer or hypothesis, then ask before deeper investigation, workaround, implementation, cleanup, migration, or scope expansion.'"
           }
         ]
       }

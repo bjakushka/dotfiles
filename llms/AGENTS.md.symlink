@@ -4,6 +4,13 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
 
 # Instructions
 
+## Collaboration checkpoint
+
+- Checkpoint before continuing: do only the smallest step needed to form a useful 
+  answer or hypothesis, then stop and ask me before deeper investigation, workaround, 
+  implementation, cleanup, migration, or scope expansion. If anything is unclear, 
+  missing, blocked, or has multiple reasonable next steps, ask me instead of deciding alone.
+
 ## Asking the user
 
 - When you present choices (AskUserQuestion tool), I must always be able to
