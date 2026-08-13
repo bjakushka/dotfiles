@@ -68,11 +68,15 @@
   "alwaysThinkingEnabled": false,
   "effortLevel": "high",
   "advisorModel": "opus",
+  "askUserQuestionTimeout": "never",
   "autoUpdatesChannel": "stable",
+  "disableAutoMode": true,
   "tui": "fullscreen",
   "theme": "dark",
+  "verbose": true,
   "preferredNotifChannel": "terminal_bell",
   "autoCompactEnabled": false,
   "remoteControlAtStartup": false,
+  "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true
 }
