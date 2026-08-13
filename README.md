@@ -13,6 +13,7 @@ Files are grouped by topic:
 * `gnupg/`
 * `llms/`
 * `ssh/`
+* `tmux/`
 * `zed/`
 * `zsh/`
 
@@ -39,6 +40,7 @@ The following files are expected to be symlinked:
 * `gnupg/gpg-agent.conf.symlink` → `~/.gnupg/gpg-agent.conf`
 * `gnupg/gpg.conf.symlink` → `~/.gnupg/gpg.conf`
 * `ssh/config.symlink` → `~/.ssh/config`
+* `tmux/tmux.conf.symlink` → `~/.tmux.conf`
 * `zed/settings.json.symlink` → `~/.config/zed/settings.json`
 * `zsh/zprofile.symlink` → `~/.zprofile`
 * `zsh/zshrc.symlink` → `~/.zshrc`
@@ -82,6 +84,8 @@ ln -s ~/.dotfiles/gnupg/gpg.conf.symlink ~/.gnupg/gpg.conf
 
 mkdir -p -m 700 ~/.ssh
 ln -s ~/.dotfiles/ssh/config.symlink ~/.ssh/config
+
+ln -s ~/.dotfiles/tmux/tmux.conf.symlink ~/.tmux.conf
 
 mkdir -p ~/.config/zed
 ln -s ~/.dotfiles/zed/settings.json.symlink ~/.config/zed/settings.json
