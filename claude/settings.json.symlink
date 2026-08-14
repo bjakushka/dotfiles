@@ -70,7 +70,7 @@
   "advisorModel": "opus",
   "askUserQuestionTimeout": "never",
   "autoUpdatesChannel": "stable",
-  "disableAutoMode": true,
+  "disableAutoMode": "disable",
   "tui": "fullscreen",
   "theme": "dark",
   "verbose": true,
