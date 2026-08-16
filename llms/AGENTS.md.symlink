@@ -53,6 +53,10 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
   when annotations exist, so no entry means either a silent approval or no review at
   all — ask.
 
+## Tools
+
+- On macOS there is no `timeout`; use `gtimeout` (GNU coreutils) instead.
+
 ## Local instructions
 
 For additional local instructions, see following files
