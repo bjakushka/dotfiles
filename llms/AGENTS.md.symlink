@@ -37,6 +37,12 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
   via `--description` so I can read it inside the overlay. Never pipe content into
   the launcher — `--stdin` never reaches the overlay on any backend; write it to a
   file and use `--compare-*` or a temp worktree instead.
+- The same goes for any reply longer than one or two paragraphs — questions,
+  analysis, plans, not just diffs. Write it to a file and open revdiff on it
+  (`--only`), so I can answer per line instead of re-reading everything in chat.
+  Do not preview the content in chat and then offer revdiff: that makes me read
+  it twice. When genuinely unsure whether it is worth an overlay, ask in one
+  line — "revdiff or here?" — and never more than that.
 - If `$TMUX` is set, launch with `REVDIFF_TMUX_WINDOW=1`: the review then survives
   the launcher being killed at the 600s bash timeout, so that background drop is
   expected — never relaunch. If `$TMUX` is empty, just launch normally and keep the
