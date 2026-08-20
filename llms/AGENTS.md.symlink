@@ -43,6 +43,8 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
 - The same goes for any reply longer than one or two paragraphs — questions,
   analysis, plans, not just diffs. Write it to a file and open revdiff on it
   (`--only`), so I can answer per line instead of re-reading everything in chat.
+  That temporary file is a presentation buffer, not a project artifact, so
+  write it in the conversation language.
   Do not preview the content in chat and then offer revdiff: that makes me read
   it twice. When genuinely unsure whether it is worth an overlay, ask in one
   line — "revdiff or here?" — and never more than that.
