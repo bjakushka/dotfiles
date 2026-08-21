@@ -1,4 +1,5 @@
 {
+  "syncClaudeAiSkills": false,
   "permissions": {
     "allow": [
       "Bash(cp:*)",
