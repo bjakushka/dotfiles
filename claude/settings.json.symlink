@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\", \"additionalContext\": \"Use the revdiff skill to show diffs and proposed edits to the user, not plaintext in chat. Preview unapplied multi-file edits from a temp git worktree.\"}}'"
+            "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\", \"additionalContext\": \"Use the revdiff skill to show diffs and proposed edits to the user, not plaintext in chat. Preview unapplied multi-file edits from a temp git worktree. Was this exact change explicitly approved?\"}}'"
           }
         ]
       }
