@@ -8,6 +8,9 @@
       "Bash(tail:*)",
       "Bash(which:*)"
     ],
+    "deny": [
+      "SendFeedback"
+    ],
     "defaultMode": "default"
   },
   "model": "opus",
@@ -18,7 +21,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\", \"additionalContext\": \"Use the revdiff skill to show diffs and proposed edits to the user, not plaintext in chat. Preview unapplied multi-file edits from a temp git worktree. Was this exact change explicitly approved?\"}}'"
+            "command": "python3 \"$HOME/.claude/hooks/revdiff-reminder.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$HOME/.claude/hooks/approval-check.py\""
           }
         ]
       }

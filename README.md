@@ -29,6 +29,7 @@ The following files are expected to be symlinked:
 * `claude/settings.json.symlink` → `~/.claude/settings.json`
 * `codex/config.toml.symlink` → `~/.codex/config.toml`
 * `codex/hooks.json.symlink` → `~/.codex/hooks.json`
+* `claude/hooks.symlink` → `~/.claude/hooks`
 * `claude/skills.symlink` → `~/.claude/skills`
 * `claude/skills.symlink/<skill>` → `~/.codex/skills/<skill>` (optional, one link per skill)
 * `claude/statusline.sh.symlink` → `~/.claude/statusline.sh`
