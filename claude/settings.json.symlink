@@ -69,6 +69,9 @@
       }
     ]
   },
+  "worktree": {
+    "baseRef": "fresh"
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -78,18 +81,30 @@
       "*/launch-revdiff.sh*"
     ]
   },
+  "feedbackDrafts": "off",
   "alwaysThinkingEnabled": false,
   "effortLevel": "high",
   "advisorModel": "opus",
   "askUserQuestionTimeout": "never",
+  "dialogExpiry": "never",
   "autoUpdatesChannel": "latest",
   "tui": "fullscreen",
+  "timeFormat": "24-hour",
   "disableAutoMode": "disable",
   "theme": "dark",
+  "editorMode": "normal",
   "verbose": true,
   "preferredNotifChannel": "terminal_bell",
   "autoCompactEnabled": false,
+  "switchModelsOnFlag": false,
   "remoteControlAtStartup": false,
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "pluginConfigs": {
+    "agents-md@builtin": {
+      "options": {
+        "instructionFiles": "claude-md-or-agents-md"
+      }
+    }
+  }
 }
