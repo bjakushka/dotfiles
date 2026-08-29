@@ -10,6 +10,9 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
   answer or hypothesis, then stop and ask me before deeper investigation, workaround, 
   implementation, cleanup, migration, or scope expansion. If anything is unclear, 
   missing, blocked, or has multiple reasonable next steps, ask me instead of deciding alone.
+- Anything meant for the owner - an answer to their question, a summary before
+  a confirmation - goes into the visible reply, never only into reasoning. If
+  the owner asked something, answer it before the next tool call.
 
 ## Asking the user
 
