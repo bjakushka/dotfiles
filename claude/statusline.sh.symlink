@@ -1,71 +1,103 @@
 #!/bin/bash
 # Claude Code statusline script. Receives JSON via stdin.
 # Uses python3 (bundled with macOS) instead of jq for JSON parsing.
-input=$(cat)
 
-get() {
-  echo "$input" | python3 -c "
-import sys, json
+# Parse the JSON once and print the needed fields joined by \x1f.
+# Missing or null values become empty strings, booleans become 1/0, numbers are truncated to int.
+PARSER='
+import json, sys
+
 data = json.load(sys.stdin)
-keys = '$1'.split('.')
-val = data
-for k in keys:
-    if isinstance(val, dict) and k in val:
-        val = val[k]
-    else:
-        val = '$2'
-        break
-if val is None: val = '$2'
-print(int(float(val)) if isinstance(val, (int, float)) else val)
-" 2>/dev/null || echo "$2"
+
+def get(path):
+    val = data
+    for key in path.split("."):
+        if not isinstance(val, dict) or val.get(key) is None:
+            return ""
+        val = val[key]
+    if isinstance(val, bool):
+        return "1" if val else "0"
+    if isinstance(val, float):
+        return str(int(val))
+    return str(val)
+
+print("\x1f".join(get(p) for p in sys.argv[1:]))
+'
+
+IFS=$'\x1f' read -r context context_size dir hourly weekly resets_at \
+  cache_warm cache_expires_at model duration_ms <<< "$(python3 -c "$PARSER" \
+  context_window.used_percentage \
+  context_window.context_window_size \
+  workspace.current_dir \
+  rate_limits.five_hour.used_percentage \
+  rate_limits.seven_day.used_percentage \
+  rate_limits.five_hour.resets_at \
+  prompt_cache.warm \
+  prompt_cache.expires_at \
+  model.display_name \
+  cost.total_duration_ms 2>/dev/null)"
+
+context=${context:-0}
+hourly=${hourly:-0}
+weekly=${weekly:-0}
+dir=$(basename "${dir:-.}")
+now=$(date +%s)
+
+RED=$'\033[31m'
+YELLOW=$'\033[33m'
+RESET=$'\033[0m'
+
+# Seconds -> "1h5m" or "5m".
+format_duration() {
+  local h=$(( $1 / 3600 )) m=$(( ($1 % 3600) / 60 ))
+  if [ "$h" -gt 0 ]; then echo "${h}h${m}m"; else echo "${m}m"; fi
 }
 
-context=$(get context_window.used_percentage 0)
-dir=$(get workspace.current_dir .)
-dir=$(basename "$dir")
-
-hourly=$(get rate_limits.five_hour.used_percentage 0)
-weekly=$(get rate_limits.seven_day.used_percentage 0)
-resets_at=$(get rate_limits.five_hour.resets_at 0)
-model=$(get model.display_name "")
-duration_ms=$(get cost.total_duration_ms 0)
-
-# Format 5h reset timer
-remaining=""
-if [ "$resets_at" -gt 0 ] 2>/dev/null; then
-  now=$(date +%s)
-  left=$(( resets_at - now ))
+# Epoch seconds -> time left until then; empty if unset.
+format_time_left() {
+  [ "${1:-0}" -gt 0 ] 2>/dev/null || return
+  local left=$(( $1 - now ))
   [ "$left" -lt 0 ] && left=0
-  h=$(( left / 3600 ))
-  m=$(( (left % 3600) / 60 ))
-  if [ "$h" -gt 0 ]; then
-    remaining="${h}h${m}m"
-  else
-    remaining="${m}m"
+  format_duration "$left"
+}
+
+# Tokens -> "200k" or "1M".
+format_tokens() {
+  if [ "$1" -ge 1000000 ]; then echo "$(( $1 / 1000000 ))M"; else echo "$(( $1 / 1000 ))k"; fi
+}
+
+# Colors text by usage percent: yellow at 80+, red at 90+.
+colorize() {
+  if [ "$1" -ge 90 ]; then echo "${RED}$2${RESET}"
+  elif [ "$1" -ge 80 ]; then echo "${YELLOW}$2${RESET}"
+  else echo "$2"
   fi
+}
+
+# Context: "C:40%/200k"
+context_part="C:${context}%"
+[ -n "$context_size" ] && context_part="${context_part}/$(format_tokens "$context_size")"
+context_part=$(colorize "$context" "$context_part")
+
+# 5h limit: "5h:85% (1h2m)"
+five_h_part="5h:${hourly}%"
+remaining=$(format_time_left "$resets_at")
+[ -n "$remaining" ] && five_h_part="${five_h_part} (${remaining})"
+five_h_part=$(colorize "$hourly" "$five_h_part")
+
+# 7d limit: "7d:30%"
+seven_d_part=$(colorize "$weekly" "7d:${weekly}%")
+
+# Prompt cache: "cache:42m" while warm, "cache:cold" after TTL; hidden before the first response.
+cache_part=""
+if [ "$cache_warm" = "1" ]; then
+  cache_part="cache:$(format_time_left "$cache_expires_at")"
+elif [ "$cache_warm" = "0" ]; then
+  cache_part="cache:cold"
 fi
 
-# Format session duration
-duration=""
-if [ "$duration_ms" -gt 0 ] 2>/dev/null; then
-  total_s=$(( duration_ms / 1000 ))
-  dh=$(( total_s / 3600 ))
-  dm=$(( (total_s % 3600) / 60 ))
-  if [ "$dh" -gt 0 ]; then
-    duration="${dh}h${dm}m"
-  else
-    duration="${dm}m"
-  fi
-fi
+# Suffix: "Opus 5.5 12m"
+suffix="$model"
+[ "${duration_ms:-0}" -gt 0 ] 2>/dev/null && suffix="${suffix:+$suffix }$(format_duration $(( duration_ms / 1000 )))"
 
-# Build 5h part
-five_h="5h:${hourly}%"
-[ -n "$remaining" ] && five_h="5h:${hourly}% (${remaining})"
-
-# Build suffix
-suffix=""
-[ -n "$model" ] && suffix="$model"
-[ -n "$duration" ] && suffix="${suffix:+$suffix }${duration}"
-
-echo "C:${context}% | ${five_h} | 7d:${weekly}% | $dir${suffix:+ | $suffix}"
-
+echo "${context_part} | ${five_h_part} | ${seven_d_part}${cache_part:+ | $cache_part} | ${dir}${suffix:+ | $suffix}"

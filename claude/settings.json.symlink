@@ -74,7 +74,8 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline.sh"
+    "command": "~/.claude/statusline.sh",
+    "refreshInterval": 30
   },
   "sandbox": {
     "excludedCommands": [
