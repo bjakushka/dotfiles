@@ -54,6 +54,12 @@ Clone the repository:
 git clone https://github.com/bjakushka/dotfiles.git ~/.dotfiles
 ```
 
+Enable the repository hooks:
+
+```sh
+git -C ~/.dotfiles config core.hooksPath .githooks
+```
+
 Create symlinks manually:
 
 ```sh
@@ -109,6 +115,7 @@ cp ~/.dotfiles/_local/gitconfig.example ~/.dotfiles/_local/gitconfig
 The main configs already reference these paths, so creating the file is enough:
 
 * `_local/AGENTS.local.md` — imported by `llms/AGENTS.md.symlink`; Codex reads it through the `SessionStart` hook
+* `_local/commit-blocklist` — patterns `.githooks/pre-commit` refuses to commit
 * `_local/gitconfig` — `[include]` in `git/gitconfig.symlink`, placed last so overrides win
 * `_local/ssh_config` — `Include` in `ssh/config.symlink`
 * `_local/zprofile` — sourced from `zsh/zprofile.symlink`

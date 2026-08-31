@@ -1,0 +1,6 @@
+# Patterns that must never be committed, checked by .githooks/pre-commit.
+# One extended regex per line, matched case-insensitively against added lines.
+# Lines starting with # and blank lines are ignored.
+
+example-corp
+gitlab\.int\.example\.com

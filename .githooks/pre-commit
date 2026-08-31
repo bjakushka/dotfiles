@@ -1,0 +1,24 @@
+#!/bin/sh
+# Reject commits whose added lines match a pattern from _local/commit-blocklist.
+# Bypass with `git commit --no-verify`.
+
+root=$(git rev-parse --show-toplevel) || exit 1
+blocklist="$root/_local/commit-blocklist"
+
+[ -f "$blocklist" ] || exit 0
+
+patterns=$(grep -v -e '^[[:space:]]*#' -e '^[[:space:]]*$' "$blocklist")
+[ -n "$patterns" ] || exit 0
+
+matches=$(
+  git diff --cached -U0 --no-color --no-ext-diff |
+    awk '/^\+\+\+ / { file = substr($0, 7); next } /^\+/ { print file ": " substr($0, 2) }' |
+    grep -i -E -e "$patterns"
+)
+
+if [ -n "$matches" ]; then
+  echo "pre-commit: staged lines match $blocklist:" >&2
+  printf '%s\n' "$matches" >&2
+  echo "Unstage them, or bypass with: git commit --no-verify" >&2
+  exit 1
+fi
