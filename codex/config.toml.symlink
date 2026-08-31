@@ -12,3 +12,6 @@ insert_newline = "alt-enter"
 
 [tui.keymap.composer]
 queue = "ctrl-shift-enter"
+
+[features]
+default_mode_request_user_input = true
