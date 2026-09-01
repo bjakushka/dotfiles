@@ -8,9 +8,9 @@ import json
 import sys
 
 REMINDER = (
-    "Show short diffs in chat and anything longer through the revdiff skill; "
-    "when unsure which, ask the user. Preview unapplied multi-file edits from "
-    "a temp git worktree."
+    "Small edit (one file, ~15 lines): make it on a temp copy so the edit "
+    "tool's diff is the preview, then ask to apply. Larger: revdiff. "
+    "Multi-file: a temp git worktree. Never show a diff as plain chat text."
 )
 
 

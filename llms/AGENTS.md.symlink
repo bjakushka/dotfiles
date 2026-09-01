@@ -60,6 +60,10 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
   resolve symlinks first, else the diff shows every line as added>`
   `--compare-new=<temp copy>`; several files — make them in a temp git worktree and launch
   revdiff from there (with `--untracked`, else new files are invisible).
+- Exception: a small edit to one file (roughly up to 15 changed lines) is made
+  on a temp copy, so the edit tool's own diff is the preview; then ask whether
+  to apply it. No revdiff, and no second copy in chat or in the question. Edits
+  to several files, however small, still go through a temp worktree and revdiff
 - Before treating a review as done: a clean launcher exit (code 0, no annotations)
   is approval — unless it returned within a few seconds, which means the overlay
   never opened, so ask. If the launcher was killed at the timeout instead, check the
