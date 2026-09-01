@@ -8,9 +8,10 @@ import json
 import sys
 
 REMINDER = (
-    "Small edit (one file, ~15 lines): make it on a temp copy so the edit "
-    "tool's diff is the preview, then ask to apply. Larger: revdiff. "
-    "Multi-file: a temp git worktree. Never show a diff as plain chat text."
+    "One logical change at a time, made on a temp copy (several files: a temp "
+    "worktree) and approved before it reaches real files. Up to ~30 lines in "
+    "one or two files: the editing tool's diff in chat, each with a line naming "
+    "the real file; larger or 3+ files: revdiff. Never retype a diff."
 )
 
 

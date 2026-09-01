@@ -29,48 +29,63 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
   "Nothing to add" and "—" (a filler, since the tool requires at least two
   options). The owner can add comments through the built-in free-text input.
 
-## Reviewing diffs
+## Reviewing changes
 
-- When working from the CLI and the `revdiff` skill is available, every diff and
-  proposed edit goes to revdiff (TUI overlay) — before I approve it, not after,
-  and approval in revdiff is approval to apply that exact change,
-  and never printed as text in chat, not even once it was already shown. Text in
-  chat is only for asking confirmation. Immediately before every revdiff launch,
-  ask `Open revdiff?` using the tool or fallback defined in "Asking the user",
-  with `Open` as the default choice and `Cancel` as the alternative. Wait for
-  the answer. Approval of an edit does not also approve opening revdiff.
-  I annotate whole-file or per-line, and the annotations come back to you as
-  `file:line (type)` text. Pass chat context (what to look at, your questions)
-  via `--description` so I can read it inside the overlay. Never pipe content into
-  the launcher — `--stdin` never reaches the overlay on any backend; write it to a
-  file and use `--compare-*` or a temp worktree instead.
-- The same goes for any reply longer than one or two paragraphs — questions,
-  analysis, plans, not just diffs. Write it to a file and open revdiff on it
-  (`--only`), so I can answer per line instead of re-reading everything in chat.
-  That temporary file is a presentation buffer, not a project artifact, so
-  write it in the conversation language.
-  Do not preview the content in chat and then offer revdiff: that makes me read
-  it twice. When genuinely unsure whether it is worth an overlay, ask in one
-  line — "revdiff or here?" — and never more than that.
-- If `$TMUX` is set, launch with `REVDIFF_TMUX_WINDOW=1`: the review then survives
-  the launcher being killed at the 600s bash timeout, so that background drop is
-  expected — never relaunch. If `$TMUX` is empty, just launch normally and keep the
-  timeout in mind; no need to tell me about it.
-- To show proposed edits WITHOUT touching real files: one file — `--compare-old=<real,
-  resolve symlinks first, else the diff shows every line as added>`
-  `--compare-new=<temp copy>`; several files — make them in a temp git worktree and launch
-  revdiff from there (with `--untracked`, else new files are invisible).
-- Exception: a small edit to one file (roughly up to 15 changed lines) is made
-  on a temp copy, so the edit tool's own diff is the preview; then ask whether
-  to apply it. No revdiff, and no second copy in chat or in the question. Edits
-  to several files, however small, still go through a temp worktree and revdiff
-- Before treating a review as done: a clean launcher exit (code 0, no annotations)
-  is approval — unless it returned within a few seconds, which means the overlay
-  never opened, so ask. If the launcher was killed at the timeout instead, check the
-  newest file under `~/.config/revdiff/history/*/`: a fresh entry whose `path:`
-  matches this launch carries my annotations — address them. History is only written
-  when annotations exist, so no entry means either a silent approval or no review at
-  all — ask.
+I read and approve every change you make. That is how I keep the project's
+context and stay able to ask, correct, or change direction as the work goes.
+Everything below exists to make that reading easy - I may be tired, and small,
+clear portions are what I can follow.
+
+- Show one logical change at a time: it may touch a few files, or be smaller
+  when that reads easier. Work in sequence - show, discuss, get approval, apply,
+  then the next change. Do not accumulate changes unless I say I will review a
+  set together at the end; that is my call, and even then any decision outside
+  what we agreed is shown and asked about before you continue
+- Make a proposed change on a temp copy (several files: a temp git worktree),
+  let me approve it there, and only then apply it to the real files. Temp
+  copies and presentation buffers you write for yourself need no approval, and
+  files a script writes are approved by approving the command that runs it
+- Size decides where I read it:
+  - up to about 30 changed lines in one or two files, roughly one screen and
+    not a hard limit: the editing tool's own diff, in chat, each preceded by one
+    visible line naming the real file and what changes
+  - larger, or three files and more: revdiff
+  - never retype a diff as chat text or inside a question
+- Replies without edits - analysis, plans, options - follow the same threshold:
+  up to about 30 lines in chat, longer as a file opened in revdiff (`--only`),
+  written in the conversation language. Use revdiff as well whenever you need
+  several answers or comments from me outside the question tool: I annotate
+  lines instead of quoting them. Do not preview that content in chat first
+- Before every revdiff launch ask `Open revdiff?` using the tool or fallback
+  defined in "Asking the user", with `Open` as the default and `Cancel` as the
+  alternative, and wait. The overlay can open in another terminal, or over a
+  session of another project and block my work there. Approving an edit does
+  not approve opening revdiff; approval inside revdiff is approval to apply that
+  exact change
+- A final review of everything done happens only when I ask for it. You may
+  remind me in one line that it is available
+
+revdiff mechanics:
+
+- Pass context (what to look at, your questions) via `--description`, so I can
+  read it inside the overlay. My annotations come back as `file:line (type)`
+- Never pipe content into the launcher - `--stdin` never reaches the overlay on
+  any backend; write it to a file and use `--compare-*` or a temp worktree
+- One file: `--compare-old=<real file, resolve symlinks first, else the diff
+  shows every line as added>` `--compare-new=<temp copy>`. Several files: make
+  them in a temp git worktree and launch revdiff from there, with `--untracked`,
+  else new files are invisible
+- If `$TMUX` is set, launch with `REVDIFF_TMUX_WINDOW=1`: the review then
+  survives the launcher being killed at the 600s bash timeout, so that
+  background drop is expected - never relaunch. If `$TMUX` is empty, launch
+  normally and keep the timeout in mind; no need to tell me about it
+- Before treating a review as done: a clean launcher exit (code 0, no
+  annotations) is approval - unless it returned within a few seconds, which
+  means the overlay never opened, so ask. If the launcher was killed at the
+  timeout instead, check the newest file under `~/.config/revdiff/history/*/`:
+  a fresh entry whose `path:` matches this launch carries my annotations -
+  address them. History is only written when annotations exist, so no entry
+  means either a silent approval or no review at all - ask
 
 ## Tools
 
