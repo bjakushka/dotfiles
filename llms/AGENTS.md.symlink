@@ -45,12 +45,16 @@ clear portions are what I can follow.
   let me approve it there, and only then apply it to the real files. Temp
   copies and presentation buffers you write for yourself need no approval, and
   files a script writes are approved by approving the command that runs it
-- Size decides where I read it:
-  - up to about 30 changed lines in one or two files, roughly one screen and
-    not a hard limit: the editing tool's own diff, in chat, each preceded by one
-    visible line naming the real file and what changes
-  - larger, or three files and more: revdiff
+- Size and shape decide where I read it:
+  - one contiguous change per file, in one or two files, up to about 30
+    changed lines, roughly one screen and not a hard limit: the editing tool's
+    own diff, in chat - one diff per file
+  - several separate places in one file, larger, or three files and more:
+    revdiff
   - never retype a diff as chat text or inside a question
+- After the diffs and before the approval question, write one visible message
+  naming the real file, what changes and why. Not before the diffs, where they
+  push it out of view, and not inside the question itself
 - Replies without edits - analysis, plans, options - follow the same threshold:
   up to about 30 lines in chat, longer as a file opened in revdiff (`--only`),
   written in the conversation language. Use revdiff as well whenever you need
