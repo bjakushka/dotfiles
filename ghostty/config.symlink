@@ -1,58 +1,43 @@
-# This is the configuration file for Ghostty.
+# Ghostty configuration
 #
-# This template file has been automatically created at the following
-# path since Ghostty couldn't find any existing config files on your system:
-#
-#   /Users/k.petrov/Library/Application Support/com.mitchellh.ghostty/config
-#
-# The template does not set any default options, since Ghostty ships
-# with sensible defaults for all options. Users should only need to set
-# options that they want to change from the default.
-#
-# Run `ghostty +show-config --default --docs` to view a list of
-# all available config options and their default values.
-#
-# Additionally, each config option is also explained in detail
-# on Ghostty's website, at https://ghostty.org/docs/config.
-#
-# Ghostty can reload the configuration while running by using the menu
-# options or the bound key (default: Command + Shift + comma on macOS and
-# Control + Shift + comma on other platforms). Not all config options can be
-# reloaded while running; some only apply to new windows and others may require
-# a full restart to take effect.
+# All options with docs: ghostty +show-config --default --docs
+# Reload while running: cmd+shift+, (some options apply only to new windows
+# or after a full restart).
+# Comments must be on their own line: a trailing "# ..." becomes part of the value.
 
-# Config syntax crash course
+# Theme
 # ==========================
-# # The config file consists of simple key-value pairs,
-# # separated by equals signs.
-# font-family = Iosevka
-# window-padding-x = 2
-#
-# # Spacing around the equals sign does not matter.
-# # All of these are identical:
-# key=value
-# key= value
-# key =value
-# key = value
-#
-# # Any line beginning with a # is a comment. It's not possible to put
-# # a comment after a config option, since it would be interpreted as a
-# # part of the value. For example, this will have a value of "#123abc":
-# background = #123abc
-#
-# # Empty values are used to reset config keys to default.
-# key =
-#
-# # Some config options have unique syntaxes for their value,
-# # which is explained in the docs for that config option.
-# # Just for example:
-# resize-overlay-duration = 4s 200ms
-#
+# Explicit pin of the built-in default colors
+theme = Ghostty Default Style Dark
+# High-contrast dark alternatives: uncomment one and comment out the line above
+# theme = IR Black
+# theme = GitHub Dark High Contrast
+# theme = iTerm2 Pastel Dark Background
+# theme = Vesper
+# theme = Xcode Dark hc
+
+# Font
+# ==========================
+font-size = 13
+
+# Mouse and clipboard
+# ==========================
+# Copy selection to the system clipboard
+copy-on-select = clipboard
+mouse-hide-while-typing = true
+
+# Keyboard
+# ==========================
+# Left Option acts as Alt; right Option still types special characters
+macos-option-as-alt = left
 # `shift+enter` inserts new line in terminal
 keybind = shift+enter=text:\x1b\r
-#
-# quick terminal configurations
+
+# Quick terminal
+# ==========================
+# cmd+shift+t works while Ghostty is focused, cmd+shift+opt+t from any app
 keybind = cmd+shift+t=toggle_quick_terminal
+keybind = global:cmd+shift+opt+t=toggle_quick_terminal
 quick-terminal-position = top
 # size of quick terminal: height and width
 quick-terminal-size = 50%,100%
@@ -60,3 +45,10 @@ quick-terminal-screen = main
 quick-terminal-animation-duration = 0.2
 quick-terminal-autohide = true
 quick-terminal-space-behavior = move
+
+# Shell integration
+# ==========================
+# ssh: install Ghostty terminfo on remote hosts (needs `tic` there),
+# fall back to TERM=xterm-256color if that fails.
+# Features not listed here (cursor, sudo, title) keep their defaults.
+shell-integration-features = ssh-terminfo,ssh-env
