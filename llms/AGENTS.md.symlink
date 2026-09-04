@@ -90,6 +90,10 @@ revdiff mechanics:
   a fresh entry whose `path:` matches this launch carries my annotations -
   address them. History is only written when annotations exist, so no entry
   means either a silent approval or no review at all - ask
+- Answering my annotations: put the answers in a separate buffer file shown in
+  the same review, not in chat. Where you need my decision, preload your own
+  annotations marked `[Claude]` on those lines via `--annotations=<file>` (same
+  `## file:line (type)` format as the output); I answer inside them
 
 ## Tools
 
