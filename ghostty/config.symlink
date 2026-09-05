@@ -26,6 +26,11 @@ font-size = 13
 copy-on-select = clipboard
 mouse-hide-while-typing = true
 
+# Scrollback
+# ==========================
+# History size per terminal, in bytes (default: 10 MB)
+scrollback-limit = 50000000
+
 # Keyboard
 # ==========================
 # Left Option acts as Alt; right Option still types special characters
