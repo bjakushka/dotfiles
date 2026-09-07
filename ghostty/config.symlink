@@ -20,6 +20,12 @@ theme = Ghostty Default Style Dark
 # ==========================
 font-size = 13
 
+# Window
+# ==========================
+# Translucent background with blur; opacity changes need a full restart on macOS
+background-opacity = 0.90
+background-blur = true
+
 # Mouse and clipboard
 # ==========================
 # Copy selection to the system clipboard
