@@ -19,6 +19,8 @@ theme = Ghostty Default Style Dark
 # Font
 # ==========================
 font-size = 13
+font-thicken = true
+font-thicken-strength = 0
 
 # Window
 # ==========================
