@@ -135,6 +135,16 @@ Shared Codex configuration stays in `codex/config.toml.symlink`. The shared shel
 aliases `codex` to `codex --profile local`, so Codex loads both `~/.codex/config.toml` and
 `~/.codex/local.config.toml`.
 
+`_local/rclone.conf` holds the rclone remotes with their OAuth tokens, so it stays out of
+the repository too. The template names the remotes without tokens; `rclone config
+reconnect <remote>:` fills a token in after the copy:
+
+```sh
+cp ~/.dotfiles/_local/rclone.conf.example ~/.dotfiles/_local/rclone.conf
+mkdir -p ~/.config/rclone
+ln -s ~/.dotfiles/_local/rclone.conf ~/.config/rclone/rclone.conf
+```
+
 ## thanks
 
 I used [Zach Holman](https://github.com/holman)'s excellent

@@ -1,0 +1,12 @@
+[llm-gdrive]
+type = drive
+scope = drive
+client_id =
+client_secret =
+token =
+team_drive =
+
+
+[llm-dropbox]
+type = dropbox
+token =
