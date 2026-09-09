@@ -145,6 +145,15 @@ mkdir -p ~/.config/rclone
 ln -s ~/.dotfiles/_local/rclone.conf ~/.config/rclone/rclone.conf
 ```
 
+## scripts
+
+Shell scripts run through aliases in `zsh/zshrc.symlink`, so they need no symlink:
+
+* `ghostty/tab-color.sh` (`tab-color`) marks the current Ghostty tab with a color: a tinted
+  background and a heart emoji in front of the tab title. Run it without arguments for the
+  list of colors; `tab-color none` resets both. The tab title is read and set over AppleScript,
+  so macOS may ask to let the terminal control Ghostty on the first run.
+
 ## thanks
 
 I used [Zach Holman](https://github.com/holman)'s excellent
