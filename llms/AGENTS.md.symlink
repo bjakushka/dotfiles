@@ -25,9 +25,11 @@ Shared LLM instructions. Keep tool-neutral — portable behavior rules only.
 - NEVER use the `preview` field on options (the bordered side-by-side form) —
   it is banned.
 - When you ask more than one question at once, add a final extra question
-  titled "Extra" (or similar), with exactly two options and no descriptions:
-  "Nothing to add" and "—" (a filler, since the tool requires at least two
-  options). The owner can add comments through the built-in free-text input.
+  titled "Extra" (or similar), with exactly two options: "Nothing to add" and
+  "—" (a filler, since the tool requires at least two options). Where the
+  tool requires a description, use a neutral one, such as "No comment" and
+  "Filler"; do not repeat anything shown earlier. The owner can add comments
+  through the built-in free-text input.
 
 ## Reviewing changes
 
