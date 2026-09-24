@@ -84,7 +84,15 @@
   },
   "feedbackDrafts": "off",
   "alwaysThinkingEnabled": false,
+  "env": {
+    "CLAUDE_CODE_PLUGIN_DIRS": "~/.claude/mods/question-needs-text"
+  },
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
   "advisorModel": "opus",
   "askUserQuestionTimeout": "never",
   "dialogExpiry": "never",
@@ -107,10 +115,5 @@
   "switchModelsOnFlag": false,
   "remoteControlAtStartup": false,
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true,
-  "modelSettings": {
-    "claude-opus-5-5": {
-      "effortLevel": "high"
-    }
-  }
+  "agentPushNotifEnabled": true
 }

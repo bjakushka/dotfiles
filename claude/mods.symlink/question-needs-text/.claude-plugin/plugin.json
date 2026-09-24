@@ -1,0 +1,1 @@
+{ "name": "question-needs-text", "version": "0.1.0", "description": "Refuses AskUserQuestion when the response has no visible text before it" }
