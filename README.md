@@ -66,6 +66,7 @@ Create symlinks manually:
 ```sh
 mkdir -p ~/.claude
 ln -s ~/.dotfiles/claude/settings.json.symlink ~/.claude/settings.json
+ln -s ~/.dotfiles/claude/hooks.symlink ~/.claude/hooks
 ln -s ~/.dotfiles/claude/skills.symlink ~/.claude/skills
 ln -s ~/.dotfiles/claude/statusline.sh.symlink ~/.claude/statusline.sh
 
